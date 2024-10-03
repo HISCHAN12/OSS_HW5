@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Loader from "../Common/Loader";
 import "./User.css";
+
 const EditUser = () => {
   const [user, setUser] = useState([]);
   const [error, setError] = useState(null);
@@ -12,31 +13,34 @@ const EditUser = () => {
   const getUserApi = "http://localhost:3000/user";
 
   useEffect(() => {
+    const getUser = () => {
+      setIsLoading(true);
+      axios
+        .get(`${getUserApi}/${id}`)
+        .then((item) => {
+          setUser(item.data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setIsLoading(false);
+        });
+    };
+
     getUser();
-  }, [getUser]);
+  }, [id]); // 'id'에 의존
 
-  const getUser = () => {
-    axios
-      .get(getUserApi.concat("/") + id)
-      .then((item) => {
-        setUser(item.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handelInput = (e) => {
+  const handleInput = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
-    console.log(name, value);
     setUser({ ...user, [name]: value });
   };
 
-  const handelSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    fetch(getUserApi.concat("/") + id, {
+    fetch(`${getUserApi}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -49,68 +53,71 @@ const EditUser = () => {
         }
         return response.json();
       })
-      .then((data) => {
-        setIsLoading(true);
+      .then(() => {
+        setIsLoading(false);
         navigate("/show-user");
       })
       .catch((error) => {
         setError(error.message);
         setIsLoading(false);
-      })
+      });
   };
 
   return (
     <div className="user-form">
       <div className="heading">
-      {isLoading && <Loader />}
-      {error && <p>Error: {error}</p>}
+        {isLoading && <Loader />}
+        {error && <p>Error: {error}</p>}
         <p>Edit Form</p>
       </div>
-      <form onSubmit={handelSubmit}>
-        <div className="mb-3">
-          <label for="name" className="form-label">
-            Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="name"
-            name="name"
-            value={user.name}
-            onChange={handelInput}
-          />
-        </div>
-        <div className="mb-3 mt-3">
-          <label for="email" className="form-label">
-            Email
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            name="email"
-            value={user.email}
-            onChange={handelInput}
-          />
-        </div>
-        <div className="mb-3">
-          <label for="pwd" className="form-label">
-            Phone
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="phone"
-            name="phone"
-            value={user.phone}
-            onChange={handelInput}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary submit-btn">
-          EDIT
-        </button>
-      </form>
+      {!isLoading && (
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">
+              Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              name="name"
+              value={user.name || ""}
+              onChange={handleInput}
+            />
+          </div>
+          <div className="mb-3 mt-3">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              value={user.email || ""}
+              onChange={handleInput}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="phone" className="form-label">
+              Phone
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="phone"
+              name="phone"
+              value={user.phone || ""}
+              onChange={handleInput}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary submit-btn">
+            EDIT
+          </button>
+        </form>
+      )}
     </div>
   );
 };
+
 export default EditUser;
