@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Loader from "../Common/Loader";
 
 const ShowUser = () => {
-  const showUserApi = "https://66ff48322b9aac9c997eca14.mockapi.io/api/oss/users";
+  const showUserApi = "https://66ff48322b9aac9c997eca14.mockapi.io/api/oss/user";
 
   const [user, setUser] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
