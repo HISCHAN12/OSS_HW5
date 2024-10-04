@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import EditUser from "./components/User/EditUser";
 import User from "./components/User/User";
 import Header from "./components/Common/Header";
+import Footer from "./components/Common/Footer";
 import Home from "./components/Layout/Home";
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
             <Route path="/create-user" element={<CreateUser />} />
             <Route path="/show-user" element={<ShowUser />} />
           </Routes>
-          
+          <Footer />
         </div>
       </header>
     </div>
