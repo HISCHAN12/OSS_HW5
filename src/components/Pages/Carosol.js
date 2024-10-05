@@ -1,4 +1,5 @@
 import React from "react";
+import './Carosol.css';
 
 const Carasol = () => {
   return (
@@ -24,26 +25,35 @@ const Carasol = () => {
         </div>
 
         <div className="carousel-inner">
-          <div className="carousel-item active">
+          <div className="carousel-item active position-relative">
             <img
-              src={'https://www.w3schools.com/bootstrap5/la.jpg'}
+              src={'/faker.jpg'}
               alt="Los Angeles"
-              className="d-block"
+              className="d-block w-100"
             />
+           <p className="carosol-text">
+            Faker
+             </p>
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item position-relative">
             <img
-              src={'https://www.w3schools.com/bootstrap5/ny.jpg'}
+              src={'/redvelvet1.jpg'}
               alt="Chicago"
-              className="d-block"
+              className="d-block w-100"
             />
+            <p className="carosol-text">
+            Redvelvet
+             </p>
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item position-relative">
             <img
-              src={'https://www.w3schools.com/bootstrap5/chicago.jpg'}
+              src={'/redvelvet2.jpg'}
               alt="New York"
-              className="d-block"
+              className="d-block w-100"
             />
+            <p className="carosol-text">
+            Redvelvet
+             </p>
           </div>
         </div>
 

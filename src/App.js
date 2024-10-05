@@ -7,6 +7,7 @@ import User from "./components/User/User";
 import Header from "./components/Common/Header";
 import Footer from "./components/Common/Footer";
 import Home from "./components/Layout/Home";
+import ShowHandol from "./components/User/ShowHandol";
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
             <Route path="/user/:id" element={<User />} />
             <Route path="/create-user" element={<CreateUser />} />
             <Route path="/show-user" element={<ShowUser />} />
+            <Route path="/show-handol" element={<ShowHandol />} />
           </Routes>
           <Footer />
         </div>

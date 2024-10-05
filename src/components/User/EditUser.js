@@ -111,6 +111,32 @@ const EditUser = () => {
               onChange={handleInput}
             />
           </div>
+          <div className="mb-3 mt-3">
+            <label htmlFor="height" className="form-label">
+              Height
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="height"
+              name="height"
+              value={user.height || ""}
+              onChange={handleInput}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="feature" className="form-label">
+              Feature
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="feature"
+              name="feature"
+              value={user.feature || ""}
+              onChange={handleInput}
+            />
+          </div>
           <button type="submit" className="btn btn-primary submit-btn">
             EDIT
           </button>

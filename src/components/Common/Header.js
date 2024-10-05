@@ -6,9 +6,14 @@ export default function Header() {
     <div>
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <div className="container-fluid">
-          <Link to="/" className="navbar-brand" href="#">
-            <span className="navbar-text">React CRUD</span>
-          </Link>
+          <a className="navbar-brand" href="https://www.smentertainment.com/en/" target="_blank" style={{ color: 'red', fontSize: '30px'}}>
+            {/*<span className="navbar-text">SM</span>*/}
+            <img
+              src="/sm.jpg"
+              alt="SM Logo"
+              style={{ width: '110px' }}
+            />
+          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -32,6 +37,11 @@ export default function Header() {
               <li className="nav-item">
                 <Link className="nav-link" to="show-user">
                   Show User
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="show-handol">
+                  Show Hanndol
                 </Link>
               </li>
             </ul>

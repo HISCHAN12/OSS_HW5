@@ -10,7 +10,9 @@ const CreateUser = () => {
     const [user, setUser] = useState({
         name: "",
         email: "",
-        phone: ""
+        phone: "",
+        height: "",
+        feature: ""
     })
 
     const handelInput = (event) => {
@@ -51,7 +53,7 @@ const CreateUser = () => {
     return (
         <div className='user-form'>
             <div className='heading'>
-            {isLoading && <Loader />}
+            {isLoading && <Loader />} //사용자가 폼을 제출할때는 isloading 이 true 상태가 되면서 loader의 애니메이션이 출력. 로딩이 끝나고 false가 되면서 현재 리스트로 넘어가게 됨.
             {error && <p>Error: {error}</p>}
                 <p>User Form</p>
             </div>
@@ -67,6 +69,14 @@ const CreateUser = () => {
                 <div className="mb-3">
                     <label for="pwd" className="form-label">Phone</label>
                     <input type="text" className="form-control" id="phone" name="phone" value={user.phone} onChange={handelInput} />
+                </div>
+                <div className="mb-3 mt-3">
+                    <label for="height" className="form-label">Height</label>
+                    <input type="text" className="form-control" id="height" name="height" value={user.height} onChange={handelInput} />
+                </div>
+                <div className="mb-3 mt-3">
+                    <label for="feature" className="form-label">Feature</label>
+                    <input type="text" className="form-control" id="feature" name="feature" value={user.feature} onChange={handelInput} />
                 </div>
                 <button type="submit" className="btn btn-primary submit-btn">Submit</button>
             </form>

@@ -45,6 +45,14 @@ const EditUser = () => {
             <td>Phone</td>
             <td>{user.phone}</td>
           </tr>
+          <tr>
+            <th>Height</th>
+            <td>{user.height}</td>
+          </tr>
+          <tr>
+            <td>Feature</td>
+            <td>{user.feature}</td>
+          </tr>
         </tbody>
       </table>
     </div>
